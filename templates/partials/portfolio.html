@@ -1,0 +1,24 @@
+<section id="portfolio">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>{{ cms.portfolio.heading }}</h3>
+            </div>
+            {% for row in cms.portfolio.projects %}
+            <div class="col-md-4 col-sm-4 wow bounceInLeft">
+                <div class="imgport" data-toggle="modal" data-target="#{{loop.index}}">
+                    <span class="wow fadeInDown">view</span>
+                    {% for image in row.images %}
+                    {% if loop.first %}
+                    <img src="{{ image|imageCrop(220, 146) }}" alt="{{ image.caption }}">
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <h4>{{ row.heading }}</h4>
+                <p>{{ row.project_date|date('F d Y') }}</p>
+                <p>{{ row.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,26 @@
+        <!-- team -->
+{% if cms.team %}
+<section id="team">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>{{ cms.team.heading }}</h3>
+            </div>
+            {% for row in cms.team.members %}
+            <div class="col-md-3 col-sm-3 wow bounceInLeft">
+                <div class="imgteam">
+                    <ul class="wow fadeInUp">
+                        {% if row.linkedin %}<li><a href="{{ row.linkedin }} "><i class=" fa fa-linkedin"></i></a></li>{% endif %}
+                        {% if row.linkedin %}<li><a href="#"><i class="fa fa-twitter-square"></i></a></li>{% endif %}
+                    </ul>
+                    <img src="{{ row.image|imageCrop(270, 350) }}" alt="{{ row.person.first }} {{ row.person.last }}">
+                </div>
+                <h4>{{ row.person.first }} {{ row.person.last }}</h4>
+                <p>{{ row.title }}</p>
+                <p>{{ row.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}

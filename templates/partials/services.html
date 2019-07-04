@@ -1,0 +1,17 @@
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>{{ cms.services.header }}</h3>
+            </div>
+            {% for row in cms.services.services %}
+            <div class="col-md-4 col-sm-4 wow bounceInUp text-center">
+                <p><span><i class="fa {{ row.icon }}"></i></span></p>
+                <h4>{{ row.heading }}</h4>
+                <p>{{ row.description }}</p>
+                <a id="talk" role="button" class="btn btn-primary btn-lg text-center wow smooth-scroll" href="#contact">Talk To Us</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

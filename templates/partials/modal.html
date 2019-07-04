@@ -1,0 +1,45 @@
+{% for row in cms.portfolio.projects %}
+<div class="modal fade" id="{{loop.index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-portfolio">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <div class="modal-body">
+                <!--  -->
+                <div id="carousel-{{loop.index}}" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        {% for image in row.images %}
+                        {% if loop.first %}
+                        <li data-target="#carousel-{{loop.index}}" data-slide-to="{{loop.index-1}}" class="active"></li>
+                        {% else %}
+                        <li data-target="#carousel-{{loop.index}}" data data-slide-to="{{loop.index-1}}"></li>
+                        {% endif %}
+                        {% endfor %}
+                    </ol>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        {% for image in row.images %}
+                        {% if loop.first %}
+                        <div class="item active">
+                            <img src="{{ image|imageSize(800, 800) }}" alt="{{ image.caption }}">
+                        </div>
+                        {% else %}
+                        <div class="item">
+                            <img src="{{ image|imageSize(800, 800) }}" alt="{{ image.caption }}">
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-{{loop.index}}" data data-slide="prev">
+                        <span class="fa fa-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-{{loop.index}}" data data-slide="next">
+                        <span class="fa fa-chevron-right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}

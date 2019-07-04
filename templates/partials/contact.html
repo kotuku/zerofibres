@@ -1,0 +1,56 @@
+{% if cms.contact %}
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>{{ cms.contact.heading }}</h3>
+            </div>
+        </div>
+    </div>
+    {% if cms.contact.geolocation %}
+    <div class="fluid-wrapper">
+        <!-- IFRAME MAPS -->
+        <iframe src="https://www.google.com/maps?q={{ cms.contact.geolocation.latitude }},{{ cms.contact.geolocation.longitude }}&hl=es;z=14&amp;output=embed" width=" 600" height="350" frameborder="0" style="border:0"></iframe>
+    </div>
+    {% endif %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 wow bounceInLeft">
+                <br>
+                {% if cms.contact.address %}
+                <p class="mail"> <i class="fa fa-map-marker"></i> {{ cms.contact.address.street1 }} {% if cms.contact.address.street2 %}{{ cms.contact.address.street2 }}<br />{% endif %} {{ cms.contact.address.city }}, {{ cms.contact.address.country }} </p>
+                {% endif %}
+                {% if cms.contact.phone_number %}
+                <p class="mail"> <i class="fa fa-phone-square"></i>&nbsp; {{ cms.contact.phone_number }} </p>
+                {% endif %}
+            </div>
+            <div class="col-md-8 col-sm-8 wow bounceInUp">
+                <form role="form" class="frm" method="post" action="//formspree.io/{{ cms.contact.recipient}}">
+                    <div class="col-md-12">
+                        <div id="success"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Name">Name *</label>
+                            <input type="text" class="form-control" name="name" id="Name" placeholder="Enter name">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Email">Email *</label>
+                            <input type="email" class="form-control" name="email" id="Email" placeholder="Enter email">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="Message">Messages *</label>
+                            <textarea name="message" id="Message" class="form-control" rows="3" placeholder="Enter messages"></textarea>
+                        </div>
+                        <input type="submit" id="submit" name="submit" value="Send Message" class="btn btn-primary btn-lg btn-block btn-biru" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}

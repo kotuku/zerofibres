@@ -1,0 +1,53 @@
+<!-- Blog Posts -->
+{% if cms.blog %}
+<section id="blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>{{ cms.blog.heading }}</h3>
+            </div>
+
+            {# The first thing we do is call articles data from the CMS. #}
+            {% set data = cms.articles %}
+
+            {# Next we sort the data by publish_date. The true bit reverses it so it's newest first. Learn more: #}
+            {# http://www.webhook.com/docs/template-rules-and-filters/#sortproperty_reverseorder #}
+            {% set data = data|sort('publish_date', true) %}
+
+
+
+            {% for object in data %}
+            {% if loop.first  %}
+            <div class="col-md-6 col-sm-6 wow bounceInLeft">
+                <p>{{ object.publish_date|date('F d Y') }}</p>
+                <h4><a href="{{ url(object) }}">{{ object.name }}</a></h4>
+                <p>{{ object.intro }}</p>
+            </div>
+            {% endif  %}
+            {% endfor %}
+
+            <div class="col-md-6 col-sm-6 wow bounceInLeft">
+                <ul>
+
+                    {# The first thing we do is call articles data from the CMS. #}
+                    {% set data1 = cms.articles %}
+
+                    {# Next we sort the data by publish_date. The true bit reverses it so it's newest first. Learn more: #}
+                    {# http://www.webhook.com/docs/template-rules-and-filters/#sortproperty_reverseorder #}
+                    {% set data1 = data1|sort('publish_date', true) %}
+
+
+                    {% for object in data1 %}
+                    {% if !loop.first  %}
+                    <li>
+                        <p>{{ object.publish_date|date('F d Y') }}</p>
+                        <h5><a href="{{ url(object) }}">{{ object.name }}</a></h5>
+                    </li>
+                    {% endif  %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
